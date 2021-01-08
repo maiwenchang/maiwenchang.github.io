@@ -1,8 +1,7 @@
 # Table of contents
 
 * [README](README.md)
-* [理解Android](android/README.md)
-  * [Framework解读](android/framework/README.md)
-    * [理解Context](android/framework/android-context.md)
+* [理解Android系列](android/README.md)
+  * [理解Context](android/framework/android-context.md)
 * [ArtPlayer](https://github.com/maiwenchang/ArtPlayer)
 
