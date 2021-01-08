@@ -2,7 +2,7 @@
 
 * [README](README.md)
 * [理解Android](android/README.md)
-  * [framework解读](android/framework/README.md)
+  * [Framework解读](android/framework/README.md)
     * [理解Context](android/framework/android-context.md)
 * [ArtPlayer](https://github.com/maiwenchang/ArtPlayer)
 
