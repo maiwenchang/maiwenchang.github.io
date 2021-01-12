@@ -280,6 +280,7 @@ public final class Looper {
             throw new RuntimeException("Only one Looper may be created per thread");
         }
         sThreadLocal.set(new Looper(quitAllowed));
+      
     }
 
     /**
