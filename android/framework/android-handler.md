@@ -246,7 +246,7 @@ class LooperThread extends Thread {
  }
 ```
 
-
+Looper的实现很简单，主要是从MessageQueue中读取消息，然后交给Handler处理。关键看`loop()`方法，一个无限for循环，不断调用MesssageQueue的`next()`方法取出消息；如果没有消息，MesssageQueue的`next()`方法会阻塞线程；如果返回了null，证明当前Looper正在退出，然后结束循环。
 
 Looper的源码：
 
@@ -346,50 +346,15 @@ public final class Looper {
 
 
 
-
-
 ## 解读MessageQueue类
 
-```java
-/*
- * Copyright (C) 2006 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+通过Handler向MessageQueue添加消息，消息将会被Looper取出，交给Handler处理。关键看next()方法。
 
+MessageQueue源码：
+
+```java
 package android.os;
 
-import android.annotation.IntDef;
-import android.annotation.NonNull;
-import android.os.MessageQueueProto;
-import android.util.Log;
-import android.util.Printer;
-import android.util.SparseArray;
-import android.util.proto.ProtoOutputStream;
-
-import java.io.FileDescriptor;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.util.ArrayList;
-
-/**
- * Low-level class holding the list of messages to be dispatched by a
- * {@link Looper}.  Messages are not added directly to a MessageQueue,
- * but rather through {@link Handler} objects associated with the Looper.
- *
- * <p>You can retrieve the MessageQueue for the current thread with
- * {@link Looper#myQueue() Looper.myQueue()}.
- */
 public final class MessageQueue {
     private static final String TAG = "MessageQueue";
     private static final boolean DEBUG = false;
