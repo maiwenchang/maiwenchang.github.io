@@ -113,15 +113,15 @@ github：https://github.com/markzhai/AndroidPerformanceMonitor
 
 #### ANR分类
 
-KeyDispatchTimeout 5s
+KeyDispatchTimeout 5s（响应用户操作）
 
-BroadcastTimeout 前台10s 后台60s
+BroadcastTimeout 前台10s 后台60s （广播）
 
-ServiceTimeout 前台20s，后台200s
+ServiceTimeout 前台20s，后台200s （服务）
 
 
 
-#### ANR分析
+#### adb命令实现ANR分析
 
 ANR发生后会把日志输出在：data/anr/trace.txt
 
@@ -145,9 +145,59 @@ github：https://github.com/SalomonBrys/ANR-WatchDog
 
 继承Thread类
 
-原理：start->run方法中while循环->post一个runnable到主线程，执行值修改操作->sleep一段时间后判断值有没有修改->如果ANR发生默认抛出异常
+原理：start->run方法中while循环->post一个runnable到主线程，执行值修改操作->sleep一段时间后判断值有没有修改->如果ANR发生默认抛出异常。
 
 ![](src/anr-watch-dog.png)
+
+
+
+界面秒开
+
+Systrace分析Cpu利用率
+
+异步+延时进行优化
+
+异步渲染
+
+xml转换成java代码，
+
+绘制优化
+
+提前获取页面数据
+
+Lancet：
+
+轻量级AOP框架
+
+编译速度快，增量编译
+
+API简单，没有多余代码插入APK
+
+@Proxy ：对系统API进行Hook
+
+@Insert： 用于操作APP类和第三方库的类
+
+
+
+统计界面打开时长
+
+hook Activity的onCreate()方法和onWindowFocusChange()方法，得到界面打开时长；
+
+hook Activity的其他生命周期回调，分析每个生命周期回调的耗时；
+
+定制Handler，统计延时加载：复写sendMessageAtTime()得到调用堆栈和handleMessage()统计消息处理时长；
+
+定制Gradle插件，编译时把所有Handler替换成定制的Handler；
+
+
+
+
+
+
+
+
+
+
 
 
 
