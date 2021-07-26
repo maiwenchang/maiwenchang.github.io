@@ -151,7 +151,7 @@ github：https://github.com/SalomonBrys/ANR-WatchDog
 
 
 
-界面秒开
+#### 界面秒开
 
 Systrace分析Cpu利用率
 
@@ -179,7 +179,7 @@ API简单，没有多余代码插入APK
 
 
 
-统计界面打开时长
+#### 统计界面打开时长
 
 hook Activity的onCreate()方法和onWindowFocusChange()方法，得到界面打开时长；
 
